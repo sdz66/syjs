@@ -1,9 +1,18 @@
 /* 全局样式 */
+:root{
+    --main_color:#1e88e5;
+}
+
 body {
     font-family: 'Microsoft YaHei', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f0f5f9;
+    box-sizing: border-box;
+    outline: none;
+    border:none;
+    text-decoration: none;
+    transition: .2s linear;
 }
 
 /* 批注文字样式 */
@@ -45,15 +54,21 @@ body {
 @media (max-width: 768px) {
     .content-container {
         flex-direction: column;
+        height: auto;
+        min-height: calc(100vh - 80px);
     }
     .sidebar {
         width: 100%;
         position: static;
+        height: auto;
     }
     .content {
         width: 100%;
         padding: 15px;
         box-sizing: border-box;
+        margin-left: 0;
+        overflow: visible;
+        min-height: 60vh;
     }
 }
 
@@ -101,11 +116,17 @@ body {
 }
 
 header {
+    position: fixed;
+    top:0; left:0; right:0;
     background-color: #1e88e5;
     color: white;
     padding: 20px;
     text-align: center;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 header h1 {
@@ -162,7 +183,7 @@ main {
 }
 
 .main-btn {
-    background-color: #1e88e5;
+    background-color: var(--main_color);
     color: white;
     border: none;
     padding: 15px 30px;
@@ -177,6 +198,21 @@ main {
     background-color: #1565c0;
     transform: translateY(-2px);
     box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+}
+
+.btn1 {
+    display: inline-block;
+    margin-top: 1rem;
+    border-radius: 5rem;
+    background:#333;
+    color:#fff;
+    padding:.9rem 3.5rem;
+    cursor: pointer;
+    font-size: 1.7rem;
+}
+
+.btn1:hover {
+    background:var(--main_color);
 }
 
 /* 电子阅读页面布局样式 */
