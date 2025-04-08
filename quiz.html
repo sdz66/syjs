@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>答题组件</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .quiz-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .quiz-title {
+            text-align: center;
+            color: #1e88e5;
+            margin-bottom: 20px;
+        }
+        .question {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .question-text {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .options {
+            margin-left: 20px;
+        }
+        .option {
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+        .option input {
+            margin-right: 8px;
+        }
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: #1e88e5;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .submit-btn:hover {
+            background: #1565c0;
+        }
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #1e88e5;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h2 class="quiz-title">知苏达理知识测试</h2>
+        
+        <div class="true-false-section">
+            <h3>判断题</h3>
+            <div class="question">
+                <div class="question-text">1. 南京的70多个城市名称表明南京拥有悠久的历史</div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q1" value="true"> 对</label>
+                    <label class="option"><input type="radio" name="q1" value="false"> 错</label>
+                </div>
+            </div>
+            
+            <!-- 其他判断题 -->
+            
+        </div>
+        
+        <div class="multiple-choice-section">
+            <h3>选择题</h3>
+            <div class="question">
+                <div class="question-text">以下哪座城市是中国东部地区重要的中心城市，历史上一直有"东南第一重镇"之称？</div>
+                <div class="options">
+                    <label class="option"><input type="radio" name="q7" value="a"> a.南京</label>
+                    <label class="option"><input type="radio" name="q7" value="b"> b.杭州</label>
+                    <label class="option"><input type="radio" name="q7" value="c"> c.上海</label>
+                </div>
+            </div>
+            
+            <!-- 其他选择题 -->
+            
+        </div>
+        
+        <button class="submit-btn" onclick="calculateScore()">提交答案</button>
+        <div class="result" id="result"></div>
+    </div>
+    
+    <script>
+        function calculateScore() {
+            // 正确答案
+            const answers = {
+                q1: 'true',
+                q2: 'false',
+                q3: 'true',
+                q4: 'false',
+                q5: 'true',
+                q6: 'false',
+                q7: 'true',
+                q8: 'false',
+                q9: 'a',
+                q10: 'd',
+                q11: 'a',
+                q12: 'b',
+                q13: 'a',
+                q14: 'c'
+            };
+            
+            let score = 0;
+            let totalQuestions = Object.keys(answers).length;
+            
+            // 检查每个问题的答案
+            for (let question in answers) {
+                const selectedOption = document.querySelector(`input[name="${question}"]:checked`);
+                if (selectedOption && selectedOption.value === answers[question]) {
+                    score++;
+                }
+            }
+            
+            // 显示结果
+            const resultElement = document.getElementById('result');
+            resultElement.textContent = `您的得分: ${score}/${totalQuestions}`;
+            
+            // 滚动到结果
+            resultElement.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
