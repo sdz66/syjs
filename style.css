@@ -54,12 +54,14 @@ body {
         height: auto;
     }
     .content {
+        position: static;
         width: 100%;
         padding: 15px;
         box-sizing: border-box;
         margin-left: 0;
         overflow: auto;
         height: calc(100vh - 80px);
+        left: 0;
     }
 }
 
@@ -71,6 +73,7 @@ body {
     overflow-y: auto;
     position: fixed;
     height: calc(100vh - 80px);
+    z-index: 100;
 }
 
 .sidebar.collapsed {
@@ -83,23 +86,28 @@ body {
 
 .toggle-sidebar {
     display: block;
-    background: none;
+    background: #4a90e2;
+    color: white;
     border: none;
+    padding: 10px;
     font-size: 20px;
     cursor: pointer;
-    padding: 10px;
     position: fixed;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
+    left: 20px;
+    top: 20px;
     z-index: 1000;
 }
 
 .content {
-    flex: 1;
+    position: absolute;
+    top: 80px;
+    left: 250px;
+    right: 0;
+    bottom: 0;
     padding: 20px;
-    margin-left: 0px;
-    transition: margin-left 0.3s ease;
+    overflow-y: auto;
+    text-indent: 2em;
+    transition: left 0.3s ease;
 }
 
 .content.expanded {
@@ -212,10 +220,9 @@ main {
 }
 
 .toggle-sidebar {
-    position: fixed;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
+    position: absolute;
+    left: 20px;
+    top: 20px;
     background: #4a90e2;
     color: white;
     border: none;
@@ -249,9 +256,12 @@ main {
 }
 
 .content {
-    flex: 1;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    right: 0;
+    bottom: 0;
     padding: 20px;
     overflow-y: auto;
     text-indent: 2em;
-    margin-left: 0;
 }
