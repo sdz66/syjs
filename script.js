@@ -46,8 +46,22 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // 点击页面其他位置关闭批注框
+    // 语言切换按钮相关元素
+    const languageBtn = document.querySelector('.language-btn');
+    const languageDropdown = document.querySelector('.language-dropdown');
+    
+    if (languageBtn && languageDropdown) {
+        languageBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            languageDropdown.style.display = languageDropdown.style.display === 'block' ? 'none' : 'block';
+        });
+    }
+    
+    // 点击页面其他位置关闭批注框和语言下拉菜单
     document.addEventListener('click', function() {
+        if (languageDropdown) {
+            languageDropdown.style.display = 'none';
+        }
         annotatedTexts.forEach(text => {
             const annotationBox = text.querySelector('.annotation-box');
             if (annotationBox) {
